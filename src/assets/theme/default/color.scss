@@ -1,0 +1,52 @@
+/*
+* @Author: Administrator
+* @Date:   2020-08-05 16:46:46
+* @Last Modified by:   Administrator
+* @Last Modified time: 2020-08-06 08:58:10
+*/
+/* Element Chalk Variables */
+
+// Special comment for theme configurator
+// type|[Chinese Name, English Name, Spanish Name, French Name]|Category|Order
+
+@import '../common-color';
+
+// Background
+// // // 下拉窗口的背景色
+$--background-color-show: $--color-white;
+/// color|[menu背景色,base background color,base background color]|BackgroundColor|4
+$--background-color-menu: $--color-white;
+/// color|[main背景色,base background color,base background color]|BackgroundColor|4
+$--background-color-main: #F3F5F9;
+/// color|[渐变背景色,base background color,base background color]|BackgroundColor|4
+$--background-color-gradient: linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+
+/// color|[table奇数行颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-table-row: $--color-white !default;
+/// color|[table偶数行颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-table-row-striped: #FAFAFC !default;
+
+/// color|[menu selected颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-menu-hover: $--background-color-main !default;
+
+/// color|[分页颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-pagination: $--color-white !default;
+
+/// color|[分割线颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-split-line: #EBEEF5 !default;
+
+//巡查统计
+$--text-color-ffffff-4a505b: #4A505B;
+$--background-color-ffffff-dae0ee: #DAE0EE;
+$--background-color-22212d-fafafa: #FAFAFA;
+$--background-color-transparent-ffffff: #FFFFFF;
+//视频监控
+$--background-color8-1b213b-cdd1e2: rgba(205,209,226,0.8);
+$--background-color5-1b213b-cdd1e2: rgba(205,209,226,0.5);
+$--text-color-d6dbe4-4a505b: #4A505B;
+$--text-color-d6dbe4-6d778b: #6D778B;
+$--text-color-1c367d-385dff: #385DFF;
+$--background-color-212988-e1f1f9: #E1F1F9;
+$--background-color-1b213b-ffffff: #FFF;
+$--background-color-2e4690-f3f5f9: #F3F5F9;
+$--text-color-color5-ffffff-000000: rgba(0,0,0,0.5);

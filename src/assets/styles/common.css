@@ -1,0 +1,364 @@
+/*
+* @Author: Administrator
+* @Date:   2020-07-22 15:52:07
+* @Last Modified by:   lilingyun
+* @Last Modified time: 2020-08-14 10:00:54
+*/
+
+/*菜单*/
+.side-bar {
+    width: 16.514286rem;
+    top: 5.714286rem;
+    padding-left: 15px;
+    bottom: 0;
+    position: fixed;
+    z-index: 1020!important;
+    transition: transform 0.3s;
+    overflow-x: hidden;
+    /*overflow: auto;*/
+}
+.sidebar-x-a {
+  transform: translateX(-15.714286rem);
+}
+
+/*内容区*/
+.main {
+    height: 100vh;
+    overflow: hidden;
+}
+.main .main-position{
+    padding: 5.714286rem 0 0 16.714286rem;
+    height: 100%;
+    position: relative;
+}
+.main .main-position .main-container {
+    height: 100%;
+    position: relative;
+    overflow: auto;
+}
+.main .map-full-screen {
+  padding: 0;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+.main .main-position .map-full-p0 {
+  padding: 0;
+}
+.main_container_padding{
+    padding: 2.142857rem 2.142857rem 0;
+}
+@media screen and (max-width: 1850px) {
+  .box-card{
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 1850px) {
+  .box-card{
+    width: 48.7%;
+    float: left;
+    margin-top: 20px;
+    margin-right: 1.3%;
+  }
+}
+
+.box-card .chart{
+  width: 100%;
+  height: 18.75rem;
+}
+.line-bg-radius{
+  height: 1.5rem;
+  border-radius: 0.75rem;
+  overflow:auto;
+}
+.box-card .line{
+  height: 90px;
+}
+.col-contains{
+  padding-top: 20px;
+  height: 24px;
+}
+.col-item-desc{
+  margin-top: 110px;
+  height: 60px;
+}
+.col-contains .col-bg {
+  float: left;
+  height: 100%;
+}
+.timeContairn{
+  float: right;
+  margin-right: 10px;
+}
+.pointSize{
+  float: right;
+  margin-top: 0.3125rem;
+  height: 0.625rem;
+  width: 0.625rem;
+  border-radius: 0.3125rem;
+}
+.point-one-color{
+  background-color: #00EAC3;
+}
+.point-two-color{
+  background-color: #4778FF;
+}
+.point-three-color{
+  background-color: #FD8C2A;
+}
+.point-four-color{
+  background-color: #7E00FF;
+}
+.cardEmpty{
+  width: 99.4%;
+  line-height: 8.25rem;
+  font-size: 20px;
+  text-align: center;
+ }
+
+/*
+ *查询
+ */
+.query-title {
+	float: left;
+	font-size: 16px;
+	line-height: 40px;
+}
+
+.lineSpan{
+  height: 1px;
+  width: 100%;
+  margin-top:7.5px;
+  margin-left:-10px;
+  position: absolute;
+}
+/*修改Element框架本身的颜色
+  ----------------------------------------------------------------------------------*/
+.el-table__header-wrapper{
+    min-height: 48px;
+}
+/*table行高*/
+.el-table__row{
+    height: 64px;
+}
+/* 表格最外层边框-底部边框*/
+.el-table__row>td {
+    border: none;
+}
+.el-table::before{
+    height: 0;
+}
+.el-table td {
+  border-bottom: 0;
+}
+.el-table td, .el-table th.is-leaf{
+  border-bottom: none !important;
+}
+/*menu*/
+.el-menu {
+  background: transparent;
+  border: none;
+}
+.el-menu-item {
+    font-size: 16px;
+    height: 60px;
+}
+.el-submenu__title {
+    font-size: 16px;
+}
+.el-submenu .el-menu-item{
+    height: 60px;
+    line-height: 60px;
+    padding-left: 50px !important;
+ }
+
+/* button */
+.el-button--default{
+  border-radius: 0;
+}
+.el-button--primary{
+  border-radius: 0;
+}
+/*----------------------------------------------------------------------------------*/
+.water-c-2 {
+    color: #F83D3D;
+}
+.water-c-3 {
+    color: #FF6C15;
+}
+.water-c-4 {
+    color: #FF3750;
+}
+.water-n-1 {
+    color: #2582F7;
+}
+.water-b-1 {
+  background: #FF3750;
+}
+.water-b-2 {
+  background: #4778FF;
+}
+.lineDataContainer{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+}
+.lineDataItemTitle{
+        width: 100%;
+        margin: 0 0 1.428571rem 0;
+}
+.lineDataItemContent{
+        width: 100%;
+}
+.lineDataItemContent div{
+        color: #757D88;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 0 0.714286rem 0;
+}
+.lineDataItemContent div.alarm{
+    color: #F83D3D;
+}
+.lineDataItemContent div input{
+    text-align:right;
+}
+/*视频相关的*/
+/* .video-btn-capture{
+    cursor: pointer;
+    width: 130px;
+    height: 40px;
+    border:1px solid #4778FF;
+}
+.video-btn-capture:hover{
+    border:1px solid rgba(180,183,191,1);
+}
+.video-btn-capture .capture-name{
+    float: left;
+    color: #D6DBE4;
+    text-align: center;
+    margin-left: 20px;
+    line-height: 38px;
+    font-size: 16px;
+}
+.video-btn-capture .capture-img{
+    float: left;
+    margin-left: 5px;
+    margin-top: 3px;
+    width: 34px;
+    height: 34px;
+    border-radius: 17px;
+    background: url("~@/assets/img/line/next.png") no-repeat;
+}
+.video-content-item{
+    float: left;
+    width: 400px;
+    height: 300px;
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.videojs-item{
+    width: 400px;
+    height: 300px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+.video-mengban{
+    float: left;
+    width: 400px;
+    height: 300px;
+    margin-top: -300px;
+    margin-left: 0px;
+    z-index: 0;
+    position: relative;
+}
+.no-video-mengban{
+    float: left;
+    width: 400px;
+    height: 300px;
+    margin-top: 0px;
+    margin-left: 0px;
+    z-index: 0;
+    position: relative;
+}
+.video-load-failure{
+    margin-top: -169px;
+    margin-left: 80px;
+    width: 240px;
+    height: 38px;
+    position: absolute;
+}
+.video-load-failure .img{
+    float: left;
+    width: 24px;
+    height: 24px;
+    margin-top: 7px;
+    margin-left: 6px;
+    border-radius: 12px;
+    background: url("~@/assets/img/line/abnormal.png") no-repeat;
+}
+.video-load-failure .title{
+    float: left;
+    font-size: 18px;
+    color: #E55051;
+    text-align: left;
+    line-height: 38px;
+    margin-left: 10px;
+    margin-top: 0px;
+}
+.videojs-play-btn{
+    cursor: pointer;
+    margin-top: -200px;
+    margin-left: 150px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border-radius: 50px;
+    background: url("~@/assets/img/line/play.png") no-repeat;
+}
+.video-name{
+    margin-top: -36px;
+    margin-left: 0px;
+    text-align: center;
+    width: 400px;
+    font-size: 16px;
+    line-height: 16px;
+    height: 16px;
+    position: absolute;
+}
+.no-video-txt{
+    font-size: 18px;
+    color: #E55051;
+    height: 38px;
+    line-height: 38px;
+    width: 400px;
+    margin-top: 131px;
+    text-align: center;
+    position: absolute;
+}
+// 抓拍记录弹框
+.video-record-item{
+    float: left;
+    width: 47%;
+    height: 400px;
+    margin-left: 20px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.video-record-img{
+    width: 100%;
+    height:337.5px;
+    margin-bottom: 20px;
+} */
+.card_item_back {
+    -webkit-box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+}

@@ -1,0 +1,57 @@
+/*
+* @Author: Administrator
+* @Date:   2020-08-05 16:46:46
+* @Last Modified by:   lilingyun
+* @Last Modified time: 2020-08-14 10:35:58
+*/
+/* Element Chalk Variables */
+
+// Special comment for theme configurator
+// type|[Chinese Name, English Name, Spanish Name, French Name]|Category|Order
+
+@import '../common-color';
+
+/// color|[四级文字颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-text-ui-4: #D6DBE4 !default;
+// color | 水质监控页面暗黑模式主描述文字颜色
+$--color-text-ui-5: #ffffff;
+// Background
+// // 下拉窗口的背景色
+$--background-color-show: #1B213B;
+/// color|[menu背景色,base background color,base background color]|BackgroundColor|4
+$--background-color-menu: #0B0C15;
+/// color|[main背景色,base background color,base background color]|BackgroundColor|4
+$--background-color-main: #151622;
+/// color|[渐变背景色,base background color,base background color]|BackgroundColor|4
+$--background-color-gradient: linear-gradient(180deg,rgba(0,0,0,1) 0%,rgba(0,0,0,0) 100%);
+
+/// color|[table奇数行颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-table-row: #282F4F !default;
+/// color|[table偶数行颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-table-row-striped: #202642 !default;
+
+/// color|[menu selected颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-menu-hover: $--background-color-main !default;
+
+/// color|[分页颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-pagination: #202642 !default;
+
+/// color|[分割线颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-split-line: #1B213B !default;
+
+//巡查统计
+$--text-color-ffffff-4a505b: #FFF;
+$--background-color-ffffff-dae0ee: #FFF;
+$--background-color-22212d-fafafa: #22212D;
+$--background-color-transparent-ffffff: transparent;
+
+//视频监控
+$--background-color8-1b213b-cdd1e2: rgba(27,33,59,0.8);
+$--background-color5-1b213b-cdd1e2: rgba(27,33,59,0.5);
+$--text-color-d6dbe4-4a505b: #D6DBE4;
+$--text-color-d6dbe4-6d778b: #D6DBE4;
+$--text-color-1c367d-385dff: #1C367D;
+$--background-color-212988-e1f1f9: #212988;
+$--background-color-1b213b-ffffff: #1B213B;
+$--background-color-2e4690-f3f5f9: #2E4690;
+$--text-color-color5-ffffff-000000: rgba(255,255,255,0.5);
