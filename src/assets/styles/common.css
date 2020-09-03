@@ -6,7 +6,7 @@
 */
 
 /*菜单*/
-.side-bar {
+/* .side-bar {
     width: 16.514286rem;
     top: 5.714286rem;
     padding-left: 15px;
@@ -15,14 +15,13 @@
     z-index: 1020!important;
     transition: transform 0.3s;
     overflow-x: hidden;
-    /*overflow: auto;*/
 }
 .sidebar-x-a {
   transform: translateX(-15.714286rem);
-}
+} */
 
 /*内容区*/
-.main {
+/* .main {
     height: 100vh;
     overflow: hidden;
 }
@@ -51,7 +50,7 @@
 }
 .main_container_padding{
     padding: 2.142857rem 2.142857rem 0;
-}
+} */
 @media screen and (max-width: 1850px) {
   .box-card{
     width: 100%;
@@ -161,23 +160,6 @@
 .el-table td, .el-table th.is-leaf{
   border-bottom: none !important;
 }
-/*menu*/
-.el-menu {
-  background: transparent;
-  border: none;
-}
-.el-menu-item {
-    font-size: 16px;
-    height: 60px;
-}
-.el-submenu__title {
-    font-size: 16px;
-}
-.el-submenu .el-menu-item{
-    height: 60px;
-    line-height: 60px;
-    padding-left: 50px !important;
- }
 
 /* button */
 .el-button--default{

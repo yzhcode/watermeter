@@ -11,11 +11,12 @@
 
 import '@/assets/styles/base.css';
 import '@/assets/styles/common.css';
+import '@/assets/styles/transition.scss'
 // import '@/assets/styles/login.css';
 // import '@/assets/styles/map.css';
 // import '@/assets/styles/echarts.less';
-// import "./default/styls.scss";
-// import './dark/styls.scss';
+import "./default/styls.scss";
+import './dark/styls.scss';
 
 // 默认主题
 export const defaultTheme = 'dark';
@@ -27,4 +28,5 @@ export const themeList = [
 export const setTheme = (themeName = defaultTheme) => {
     // 把该主题的所有属性存到缓存
     document.body.className = themeName;
+    console.log('界面皮肤生效 :>> ', themeName);
 }

@@ -7,6 +7,7 @@
     <div class="about">
         <h1>This is an about page===={{userId}}======{{nuserid}}</h1>
         <input v-model="userId">
+        <span>44444444444444444444</span>
     </div>
 </template>
 

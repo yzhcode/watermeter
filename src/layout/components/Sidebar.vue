@@ -1,154 +1,109 @@
+<!--
+ * @Author: yzh
+ * @Date: 2020-08-28 18:05:30
+ * @Description: file content
+-->
 <template>
     <div>
-        <div :class="['side-bar', fScreen?'sidebar-x-a':'']">
-            <el-menu v-if="userRole=='1'" :default-active="$route.path" router>
-                <el-menu-item index="/areaManage">
-                    <svg-icon icon-class="firefox" class="mr15 f22"></svg-icon>
-                    区域管理
-                </el-menu-item>
-                <el-menu-item index="/wholeManage">
-                    <svg-icon icon-class="menu-smart" class="mr15 f22"></svg-icon>
-                    水站管理
-                </el-menu-item>
-                <el-menu-item index="/regionAccountManager">
-                    <svg-icon icon-class="user" class="mr15 f22"></svg-icon>
-                    区域账号管理
-                </el-menu-item>
-                <el-submenu index="1">
-                    <template slot="title">
-                        <svg-icon icon-class="menu-device" class="mr15 f22"></svg-icon>
-                        设备管理
-                    </template>
+        <div class="side-bar">
+            <el-menu :default-active="$route.path" router>
+                <template v-for="(route, index) in routes">
+                    <el-menu-item v-if="!route.children || route.children.length === 0" :key="route.path"
+                        :index="route.path">
+                        <svg-icon :icon-class="route.meta.icon" class="mr15 f22"></svg-icon>
+                        {{route.meta.title}}
+                    </el-menu-item>
+                    <el-submenu v-else :index="index.toString()" :key="route.path">
+                        <template slot="title">
+                            <svg-icon :icon-class="route.meta.icon" class="mr15 f22"></svg-icon>
+                            {{route.meta.title}}
+                        </template>
 
-                    <el-menu-item-group>
-                        <el-menu-item class="ml15" index="/device/cloudBox">云盒子</el-menu-item>
-                        <el-menu-item class="ml15" index="/videoManage">摄像头</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-
-                <el-menu-item index="/monitorLocation">
-                    <svg-icon icon-class="menu-whole" class="mr15 f22"></svg-icon>
-                    应用管理
-                </el-menu-item>
+                        <el-menu-item-group>
+                            <template v-for="subroute in route.children">
+                                <el-menu-item v-if="!subroute.children || subroute.children.length === 0"
+                                    :key="subroute.path" :index="subroute.path">
+                                    <svg-icon :icon-class="subroute.meta.icon" class="mr15 f22"></svg-icon>
+                                    {{subroute.meta.title}}
+                                </el-menu-item>
+                            </template>
+                        </el-menu-item-group>
+                    </el-submenu>
+                </template>
             </el-menu>
-            <el-menu v-if="userRole=='2'" :default-active="$route.path" router>
-                <el-menu-item index="/wholeMap">
-                    <svg-icon icon-class="menu-map" class="mr15 f22"></svg-icon>
-                    水站地图
-                </el-menu-item>
-
-                <el-submenu index="1">
-                    <template slot="title">
-                        <svg-icon icon-class="menu-smart" class="mr15 f22"></svg-icon>
-                        实时监控
-                    </template>
-
-                    <el-menu-item-group>
-                        <el-menu-item class="ml15" index="/wholeDataMonitoring">水站监控</el-menu-item>
-                        <el-menu-item class="ml15" index="/wholeVideoMonitoring">实时视频</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-
-                <el-submenu index="2">
-                    <template slot="title">
-                        <svg-icon icon-class="menu-statistics" class="mr15 f22"></svg-icon>
-                        数据分析
-                    </template>
-
-                    <el-menu-item-group>
-                        <el-menu-item class="ml15" index="/wholeAlarmLog">报警日志</el-menu-item>
-                        <el-menu-item class="ml15" index="/wholeStatisticsTrend">历史数据</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-
-                <el-submenu index="3">
-                    <template slot="title">
-                        <svg-icon icon-class="menu-whole" class="mr15 f22"></svg-icon>
-                        工单管理
-                    </template>
-
-                    <el-menu-item-group>
-                        <el-menu-item class="ml15" index="/wholeWorkOrderManager">工单派发</el-menu-item>
-                        <el-menu-item class="ml15" index="/wholeWorkOrderHis">工单状态</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-
-                <el-submenu index="4" v-if="roleType=='2'">
-                    <template slot="title">
-                        <svg-icon icon-class="menu-device" class="mr15 f22"></svg-icon>
-                        设备管理
-                    </template>
-
-                    <el-menu-item-group>
-                        <el-menu-item class="ml15" index="/device/cloudBox">云盒子</el-menu-item>
-                        <el-menu-item class="ml15" index="/videoManage">摄像头</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-
-                <el-menu-item index="/wholeAttendance">
-                    <svg-icon icon-class="menu-account" class="mr15 f22"></svg-icon>
-                    巡查统计
-                </el-menu-item>
-
-                <el-submenu index="5">
-                    <template slot="title">
-                        <svg-icon icon-class="menu-set" class="mr15 f22"></svg-icon>
-                        系统管理
-                    </template>
-
-                    <el-menu-item-group>
-                        <el-menu-item class="ml15" index="/wholeManage">水站管理</el-menu-item>
-                        <el-menu-item class="ml15" index="/wholeAccount">账号管理</el-menu-item>
-                    </el-menu-item-group>
-                </el-submenu>
-
-            </el-menu>
-        </div>
-        <div class="main">
-            <div :class="['main-position', fScreen?'map-full-screen':'']">
-                <div :class="['main-container', fScreen?'map-full-p0':'',isNeedPadding?'':'main_container_padding']">
-                    <router-view></router-view>
-                </div>
-            </div>
         </div>
     </div>
 </template>
 <script>
+    // import {
+    //     getDisplayRoutes
+    // } from '@/router'
     export default {
+        name: 'Sidebar',
         data() {
             return {
-                userRole: 1, //账号角色
-                roleType: this.$store.getters["siteConfig/renderRoleType"], //角色类型
-                isNeedPadding: false,
+                // userRole: this.$store.state.user.role, //账号角色
+                // roleType: this.$store.getters["siteConfig/renderRoleType"], //角色类型
+                // isNeedPadding: false,
             }
         },
         components: {},
+        // watch: {
+        //     userRole(newVal, oldVal) {
+
+        //     }
+        // },
         computed: {
-            // 是否全屏
-            fScreen: function () {
-                return this.$store.getters['siteConfig/renderFullScreen'];
-            }
-        },
-        watch: {
-            '$route'(route) { //监听路由变化
-                if (route.path === '/wholeMap') {
-                    this.isNeedPadding = true;
-                } else {
-                    this.isNeedPadding = false;
-                }
+            userRole() {
+                return this.$store.state.user.role;
+            },
+            routes() {
+                let premission_routes = this.$store.state.user.routes;
+                let routes = [];//getDisplayRoutes(premission_routes);
+                return routes;
             },
         },
-        mounted() {
-            if (this.$route.path === '/wholeMap') {
-                this.isNeedPadding = true;
-            } else {
-                this.isNeedPadding = false;
-            }
+        watch: {
+            // '$route'(route) { //监听路由变化
+            //     if (route.path === '/wholeMap') {
+            //         this.isNeedPadding = true;
+            //     } else {
+            //         this.isNeedPadding = false;
+            //     }
+            // },
         },
-        methods: {}
+        filters: {
+
+        },
+        mounted() {
+            // if (this.$route.path === '/wholeMap') {
+            //     this.isNeedPadding = true;
+            // } else {
+            //     this.isNeedPadding = false;
+            // }
+
+        },
+        methods: {
+
+        }
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+    // @import "~@/assets/styles/common.css";
+    .side-bar {
+        width: 100%;
+        // margin-left: 15px !important;
+        // bottom: 0;
+        // position: fixed;
+        // z-index: 1020!important;
+        transition: transform 0.3s;
+        overflow-x: hidden;
+        background-color: blueviolet;
+        /*overflow: auto;*/
+    }
 
+    .sidebar-x-a {
+        transform: translateX(-15.714286rem);
+    }
 </style>

@@ -22,6 +22,8 @@ moment.locale('zh-cn'); // 默认的语言环境为中文
 
 import api from '@/network/api';
 Vue.prototype.$api = api;
+import SvgIcon from '@/components/SvgIcon'
+Vue.component('svg-icon', SvgIcon)
 Vue.config.productionTip = false
 
 // import http from '@/network/http'

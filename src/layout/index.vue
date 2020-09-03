@@ -1,101 +1,101 @@
+<!--
+ * @Author: yzh
+ * @Date: 2020-09-03 09:55:42
+ * @Description: file content
+-->
 <template>
-    <div :class="classObj" class="app-wrapper">
-        <!-- <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" /> -->
-        <div :class="{'fixed-header':fixedHeader}">
-            <navbar />
+    <div class="layout">
+        <div class="layout-fix-row layout-header">
+            <layout-header></layout-header>
         </div>
-        <sidebar class="sidebar-container" />
-        <div class="main-container">
-        <app-main />
+        <div class="layout-fix-column layout-aside">
+            <layout-menu></layout-menu>
         </div>
+        <div class="layout-fix-column layout-router-container">
+            <layout-router></layout-router>
+        </div>
+        <!-- <div class="layout-fix-column layout-ads">
+            
+        </div> -->
+        <!-- <div class="layout-fix-row layout-footer">
+           
+        </div> -->
     </div>
 </template>
 
 <script>
-    import Navbar from './components/Navbar'
-    import Sidebar from './components/Sidebar'
-    import AppMain from './components/AppMain'
-    
-    // import ResizeMixin from './mixin/ResizeHandler'
+    import LayoutMenu from './components/Sidebar'
+    import LayoutRouter from './components/AppMain'
+    import LayoutHeader from './components/Header'
 
     export default {
-        name: 'Layout',
+        name: 'MainLayout',
         components: {
-            Navbar,
-            Sidebar,
-            AppMain
-        },
-        // mixins: [ResizeMixin],
-        computed: {
-            sidebar() {
-                return this.$store.state.app.sidebar
-            },
-            device() {
-                return this.$store.state.app.device
-            },
-            fixedHeader() {
-                return this.$store.state.settings.fixedHeader
-            },
-            classObj() {
-                return {
-                    hideSidebar: !this.sidebar.opened,
-                    openSidebar: this.sidebar.opened,
-                    withoutAnimation: this.sidebar.withoutAnimation,
-                    mobile: this.device === 'mobile'
-                }
-            }
-        },
-        methods: {
-            handleClickOutside() {
-                this.$store.dispatch('app/closeSideBar', {
-                    withoutAnimation: false
-                })
-            }
+            LayoutMenu,
+            LayoutRouter,
+            LayoutHeader
         }
     }
+
 </script>
 
 <style lang="scss" scoped>
-    @import "~@/assets/styles/mixin.scss";
-    @import "~@/assets/styles/variables.scss";
-
-    .app-wrapper {
-        @include clearfix;
-        position: relative;
+    $sideBarWidth: 210px;
+    $navbarHeight: 100px;
+    
+    .layout {
         height: 100%;
-        width: 100%;
-
-        &.mobile.openSidebar {
+        .layout-fix-row {
             position: fixed;
-            top: 0;
+            overflow-y: auto; // 外部框架自动滚动，内部高度自动
+            z-index: 3;
+            left:0;
+            right:0;
+            transition: all 0.2s;
+            width: 100%;
         }
-    }
 
-    .drawer-bg {
-        background: #000;
-        opacity: 0.3;
-        width: 100%;
-        top: 0;
-        height: 100%;
-        position: absolute;
-        z-index: 999;
-    }
+        .layout-header{
+            height: $navbarHeight;
+            top: 0;
+            box-shadow: 0px 2px 4px 0px rgba(37, 130, 247, 0.2);
+            z-index: 4;
+            // border: 1px solid #f00;
+        }
 
-    .fixed-header {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: -$sideBarWidth;
-        z-index: 9;
-        width: calc(100% - #{$sideBarWidth});
-        transition: width 0.28s;
-    }
+        .layout-footer {
+            height: $navbarHeight;
+            bottom: 0;
+            // border: 1px solid #0f0;
+        }
 
-    .hideSidebar .fixed-header {
-        width: calc(100% - 54px)
-    }
+        .layout-fix-column {
+            position: fixed;
+            overflow-y: auto; // 外部框架自动滚动，内部高度自动
+            z-index: 3;
+            top: $navbarHeight;
+            bottom: 0;
+        }
 
-    .mobile .fixed-header {
-        width: 100%;
+        .layout-aside {
+            left: 0;
+            width: $sideBarWidth;
+            z-index: 5;
+            // border: 1px solid #00f;
+        }
+
+        .layout-ads {
+            right: 0;
+            width: $sideBarWidth;
+            // border: 1px solid #f0f;
+        }
+
+        .layout-router-container{
+            left: $sideBarWidth;
+            right: 0;
+            background: #F3F5F9;
+            // min-height: 100%;
+            // border: 1px solid #f0f;
+        }
     }
 </style>

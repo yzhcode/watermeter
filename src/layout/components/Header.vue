@@ -28,6 +28,7 @@
     } from '@/assets/theme/setTheme.js';
     export default {
         // inject : ['reload'],
+        name: 'Header',
         data() {
             return {
                 dialogThemeVisible: false,
