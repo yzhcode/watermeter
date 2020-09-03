@@ -24,7 +24,7 @@ const allRoutes = [{
         component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
         meta: {
             title: 'Home',
-            icon: 'el-icon-s-help'
+            icon: 'menu-account'
         },
     },
     {
@@ -35,7 +35,7 @@ const allRoutes = [{
         component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
         meta: {
             title: 'About',
-            icon: 'el-icon-s-help'
+            icon: 'menu-area'
         },
     },
     {
@@ -44,8 +44,8 @@ const allRoutes = [{
         // hidden: true,
         component: () => import( /* webpackChunkName: "about" */ '@/views/login/index.vue'),
         meta: {
-            title: 'Login',
-            icon: 'el-icon-s-help'
+            title: 'logo',
+            icon: 'menu-chart'
         },
     },
     {
@@ -55,7 +55,7 @@ const allRoutes = [{
         component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
         meta: {
             title: '页面没找到',
-            icon: 'el-icon-s-help'
+            icon: 'menu-family'
         },
     },
     {
@@ -65,7 +65,7 @@ const allRoutes = [{
         name: 'Example',
         meta: {
             title: 'Example',
-            icon: 'el-icon-s-help',
+            icon: 'menu-waterfactory',
             roles: [1, 2]
         },
         children: [{
@@ -74,7 +74,7 @@ const allRoutes = [{
                 component: () => import('@/views/templates/t_menu_c_1'),
                 meta: {
                     title: 'Table',
-                    icon: 'table',
+                    icon: 'menu-waterfactory',
                     roles: [2],
                 }
             },
@@ -84,7 +84,7 @@ const allRoutes = [{
                 component: () => import('@/views/templates/t_menu_c_2'),
                 meta: {
                     title: 'Tree',
-                    icon: 'tree',
+                    icon: 'menu-watermeter',
                     roles: [1]
                 }
             }

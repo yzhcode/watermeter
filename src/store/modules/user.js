@@ -12,8 +12,6 @@ const state = {
     lastLoginTime:''
 }
 
-const STORE_USER_COMMIT_SUCCESS = null
-
 const getter = {
     getUserInfo: (state) => (key) => {
         console.log('store get user :>> ', [key, state[key]]);

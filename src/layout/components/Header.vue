@@ -6,10 +6,10 @@
         </div>
         <div class="user-operate-container">
             <span>{{userName}}</span>
-            <span class="operate-set">正常情况消失</span>
+            <span class="operate-set" scale="2.2">正常情况消失</span>
             <div class="operate-container">
-                <span>yyyyyyy</span>
-                <span>xxxxxx</span>
+                <span></span>
+                <span class="f22">xxxxxx</span>
                 <span>yyyyyyy</span>
                 <span>xxxxxx</span>
                 <span>yyyyyyy</span>

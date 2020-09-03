@@ -5,8 +5,8 @@
  */
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
 import store from './store'
+import router from './router'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -27,9 +27,11 @@ moment.locale('zh-cn'); // 默认的语言环境为中文
 
 import api from '@/network/api';
 Vue.prototype.$api = api;
-import SvgIcon from '@/components/SvgIcon'
-Vue.component('svg-icon', SvgIcon)
 Vue.config.productionTip = false
+
+// 参考地址 https://cenkai88.github.io/vue-svg-icon/demo/
+import SvgIcon from 'vue-svg-icon/Icon.vue'
+Vue.component('svg-icon', SvgIcon)
 
 // import http from '@/network/http'
 // Vue.use(http)

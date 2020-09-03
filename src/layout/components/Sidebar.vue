@@ -10,12 +10,12 @@
                 <template v-for="(route, index) in routes">
                     <el-menu-item v-if="!route.children || route.children.length === 0" :key="route.path"
                         :index="route.path">
-                        <svg-icon :icon-class="route.meta.icon" class="mr15 f22"></svg-icon>
+                        <svg-icon :name="route.meta.icon"  class="mr15 f22"></svg-icon>
                         {{route.meta.title}}
                     </el-menu-item>
                     <el-submenu v-else :index="index.toString()" :key="route.path">
                         <template slot="title">
-                            <svg-icon :icon-class="route.meta.icon" class="mr15 f22"></svg-icon>
+                            <svg-icon :name="route.meta.icon" class="mr15 f22"></svg-icon>
                             {{route.meta.title}}
                         </template>
 
@@ -23,7 +23,7 @@
                             <template v-for="subroute in route.children">
                                 <el-menu-item v-if="!subroute.children || subroute.children.length === 0"
                                     :key="subroute.path" :index="subroute.path">
-                                    <svg-icon :icon-class="subroute.meta.icon" class="mr15 f22"></svg-icon>
+                                    <svg-icon :name="subroute.meta.icon" class="mr15 f22"></svg-icon>
                                     {{subroute.meta.title}}
                                 </el-menu-item>
                             </template>
