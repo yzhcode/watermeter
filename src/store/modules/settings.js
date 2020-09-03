@@ -25,28 +25,21 @@ const getter = {
 }
 
 const mutations = {
-    // SET_THEME: (state, theme) => {
-    //     state.theme = theme
-    // },
-    CHANGE_SETTING: (state, { key, value }) => {
-        if (state.hasOwnProperty(key)) {
-            state[key] = value
+    CHANGE_SETTING: (state, config) => {
+        for(let key in config){
+            if (state.hasOwnProperty(key)) {
+                let value = config[key];
+                state[key] = value
+                console.log('store setting :>> ', key, '--', value);
+                if (key === 'theme') {
+                    setTheme(value);
+                }
+            }
         }
     }
 }
 
 const actions = {
-    // changeTheme({ commit, state }, theme) {
-    //     commit('SET_THEME', theme)
-    //     setTheme(theme);
-    // },
-    // changeThemeWithCallback({ commit, state }, theme) {
-    //     return new Promise((resolve, reject) => {
-    //         commit('SET_THEME', theme);
-    //         setTheme(theme);
-    //         resolve(config);
-    //     });
-    // },
     changeSetting({ commit, state }, config) {
         commit('CHANGE_SETTING', config)
     },

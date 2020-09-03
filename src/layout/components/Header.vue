@@ -49,7 +49,7 @@
             },
             waterId(newVal, oldVal) {
                 this.handleSelect();
-            },
+            }
         },
         computed: {
             userRole() {
@@ -101,7 +101,7 @@
             }
         },
         mounted() {
-            this.themeV = this.themeV;
+            // this.themeV = this.themeV;
         },
         methods: {
 

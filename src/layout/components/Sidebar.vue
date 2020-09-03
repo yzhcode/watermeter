@@ -35,9 +35,9 @@
     </div>
 </template>
 <script>
-    // import {
-    //     getDisplayRoutes
-    // } from '@/router'
+    import {
+        getDisplayRoutes
+    } from '@/router'
     export default {
         name: 'Sidebar',
         data() {
@@ -58,8 +58,9 @@
                 return this.$store.state.user.role;
             },
             routes() {
-                let premission_routes = this.$store.state.user.routes;
-                let routes = [];//getDisplayRoutes(premission_routes);
+                let role = this.$store.state.user.role;
+                let routes = getDisplayRoutes(role);
+                console.log('display routes :>> ', routes);
                 return routes;
             },
         },

@@ -13,12 +13,7 @@ import {
 // import router from '@/router'
 
 export function storeSetUserRoleCallback(role) {
-    let routes = getPermissionRoutes(role);
-    store.dispatch('user/setUserInfoWithCallback', {
-        'routes': routes
-    }).then(res => {
-        resetRouter();
-    }).catch(error => {
-        console.log('设置路由信息失败 :>> ');
-    });
+    // let routes = getPermissionRoutes(role);
+    // console.log('准备保存路由信息 :>> ', routes);
+    resetRouter();
 }

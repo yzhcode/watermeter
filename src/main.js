@@ -1,3 +1,8 @@
+/*
+ * @Author: yzh
+ * @Date: 2020-09-03 10:05:52
+ * @Description: file content
+ */
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'

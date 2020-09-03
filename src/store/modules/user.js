@@ -24,10 +24,11 @@ const getter = {
 const mutations = {
     SET_USER_INFO: (state, config) => {
         // 遍历config，设置对应的值到state中
-        console.log('store set user :>> ', config);
+        // console.log('store set user config:>> ', config);
         for(let key in config){
             if (state.hasOwnProperty(key)) {
                 let value = config[key];
+                console.log('store set user :>> ', key, "==>", value)
                 if (value) {
                     state[key] = value;
                 }
