@@ -33,6 +33,9 @@ Vue.config.productionTip = false
 import SvgIcon from 'vue-svg-icon/Icon.vue'
 Vue.component('svg-icon', SvgIcon)
 
+// import SvgIcon2 from '@/components/SvgIcon'
+// Vue.component('svg-icon2', SvgIcon2)
+
 // import http from '@/network/http'
 // Vue.use(http)
 

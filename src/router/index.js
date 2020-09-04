@@ -11,7 +11,7 @@
 1、跳转路由时会报错
 2、路由配置里，子路由要写全路径
 3、svg-icon 图太小了
- */ 
+ */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store'
@@ -19,118 +19,155 @@ import store from '@/store'
 Vue.use(VueRouter)
 
 // 路由跳转时会报错，这里截获错误
-const originalPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push (location) {
+// const originalPush = VueRouter.prototype.push
+// VueRouter.prototype.push = function push(location) {
 
-    let err = originalPush.call(this, location).catch(err => err)
-    console.log('route error :>> ', err);
-    return err;
-}
+//     let err = originalPush.call(this, location).catch(err => err)
+//     console.log('route error :>> ', err);
+//     return err;
+// }
 
-import Layout from '@/layout'
+import MainLayout from '@/layout/mainlayout'
+import SubLayout from '@/layout/sublayout'
 
 const pathLogin = '/login';
 const pathAbout = '/about';
 const path404 = '/404'
-const permissionRoutes = {};// {role:[], role:[]}
+const permissionRoutes = {}; // {role:[], role:[]}
 
 /***************************** 路由配置 ******************************/
-const allRoutes = [{
-        path: '/',
-        name: 'Home',
-        hidden: true,
-    },
-    {
-        path: '/',
-        name: 'areaManager',
-        hidden: true,
-        component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
-        meta: {
-            title: '区域管理',
-            icon: 'menu-area'
-        },
-    },
-    {
-        path: pathAbout,
-        name: 'About',
+
+// 左侧菜单显示到路由
+const mainLayoutRoutes = [{
+        path: '/menu1',
+        name: 'menu1',
         // hidden: true,
 
         component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
         meta: {
-            title: '关于',
-            icon: 'menu-area'
-        },
+            title: '菜单1',
+            icon: 'menu-waterfactory'
+        }
     },
     {
-        path: pathLogin,
-        name: 'login',
+        path: '/menu2',
+        name: 'menu2',
         // hidden: true,
         component: () => import( /* webpackChunkName: "about" */ '@/views/login/index.vue'),
         meta: {
-            title: '登录',
-            icon: 'menu-chart'
-        },
-    },
-    {
-        path: path404,
-        name: path404,
-        redirect: '/404/menu_d_1',
-        component: Layout,
-        showFirst: true,
-        // meta: {
-        //     title: path404,
-        //     icon: 'menu-waterfactory',
-        //     roles: [1],
-        // },
-        children: [{
-            path: '/404/menu_d_1',
-            name: 'menu_d_1',
-            component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
-            meta: {
-                title: '唯一子菜单',
-                icon: 'menu-waterfactory',
-                roles: [1],
-            }
-        }
-    ]
-    },
-    {
-        path: '/menu_c',
-        component: Layout,
-        redirect: '/menu_c/menu_c_1',
-        name: 'Example',
-        meta: {
-            title: 'Example',
+            title: '菜单2',
             icon: 'menu-waterfactory'
-            // roles: [1, 2]
+        }
+    },
+    {
+        path: '/menu3',
+        name: 'menu3',
+        // hidden: true,
+        component: SubLayout,
+        meta: {
+            title: '菜单3',
+            icon: 'menu-waterfactory'
         },
         children: [{
-                path: '/menu_c/menu_c_1',
-                name: 'menu_c_1',
-                component: () => import('@/views/templates/t_menu_c_1'),
+                path: '/menu3/submenu1',
+                name: 'menu3submenu1',
+                // hidden: true,
+
+                component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
                 meta: {
-                    title: 'Table',
-                    icon: 'menu-waterfactory',
-                    roles: [2],
+                    title: '3-子菜单1',
+                    icon: 'menu-waterfactory'
                 }
             },
             {
-                path: '/menu_c/menu_c_2',
-                name: 'menu_c_2',
+                path: '/menu3/submenu2',
+                name: 'menu3submenu2',
+                // hidden: true,
+                component: () => import( /* webpackChunkName: "about" */ '@/views/login/index.vue'),
+                meta: {
+                    title: '3-子菜单2',
+                    icon: 'menu-waterfactory'
+                }
+            }
+        ]
+    },
+    {
+        path: '/menu4',
+        name: 'menu4',
+        // hidden: true,
+        component: SubLayout,
+        meta: {
+            title: '菜单4',
+            icon: 'menu-waterfactory'
+        },
+        children: [{
+                path: '/menu4/submenu1',
+                name: 'menu4submenu1',
+                // hidden: true,
+
+                component: () => import('@/views/templates/t_menu_c_1'),
+                meta: {
+                    title: '4-子菜单1',
+                    icon: 'menu-waterfactory'
+                }
+            },
+            {
+                path: '/menu4/submenu2',
+                name: 'menu4submenu2',
+                // hidden: true,
                 component: () => import('@/views/templates/t_menu_c_2'),
                 meta: {
-                    title: 'Tree',
-                    icon: 'menu-watermeter',
-                    roles: [1]
+                    title: '4-子菜单2',
+                    icon: 'menu-waterfactory'
                 }
             }
         ]
     }
-]
+];
+
+// 满屏的路由，比如首页(一般用来重定向的)，登录页，404页 和MainLayout
+const allRoutes = [{
+        path: '/',
+        name: 'Home',
+        component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
+        meta: {
+            title: '首页',
+            icon: 'menu-waterfactory'
+        }
+    },
+    {
+        path: pathLogin,
+        name: 'login',
+        component: () => import( /* webpackChunkName: "about" */ '@/views/login/index.vue'),
+        meta: {
+            title: '登录',
+            icon: 'menu-waterfactory'
+        }
+    },
+    {
+        path: path404,
+        name: 'About',
+        component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
+        meta: {
+            title: '页面不存在',
+            icon: 'menu-waterfactory'
+        }
+    },
+    {
+        path: '/MainLayout',
+        name: '主路由',
+        component: MainLayout,
+        meta: {
+            title: '主路由',
+            icon: 'menu-waterfactory'
+        },
+        children: mainLayoutRoutes
+    }
+];
 
 function initRouter() {
     let routes = getPermissionRoutes(store.state.user.role);
-    console.log('initRouter :>> ',routes);
+    console.log('initRouter :>> ', routes);
     let router = new VueRouter({
         mode: 'history',
         base: process.env.BASE_URL,
@@ -171,12 +208,15 @@ router.afterEach((to, from, next) => {
 const whiteList = [pathLogin, path404, pathAbout] // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
-
+    next();
+    return;
     let role = store.state.user.role;
     console.log('beforeEach 角色 :>> ', role, '   路由将要to >> ', to.path);
     if (role) { // 已登录
-        if (to.path === pathLogin ||
-            to.path === '/') {
+        if (to.path === pathLogin) {
+            console.log('路由最终to :>> ', to.path);
+            next();
+        } else if (to.path === '/') {
             next({
                 path: getRedirectRoot()
             })
@@ -212,33 +252,32 @@ router.afterEach(() => {
  * @return {type} 
  */
 export function getDisplayRoutes(role) {
-    console.log('filterHiddenRoutes role :>> ', role);
-    let routes = getPermissionRoutes(role);
-    routes = filterHiddenRoutes(routes);
+    let routes = filterRoutes(mainLayoutRoutes, role, true);
+    console.log('DisplayRoutes role :>> ', role, 'route: ', routes);
     return routes;
 }
 
-function filterHiddenRoutes(routes) {
-    const res = []
-    routes.forEach(route => {
-        const tmp = {
-            ...route
-        }
+// function filterHiddenRoutes(routes) {
+//     const res = []
+//     routes.forEach(route => {
+//         const tmp = {
+//             ...route
+//         }
 
-        if (tmp.children) { // 有子项的，判断所有子项目，只要有一个不隐藏就可以了
-            tmp.children = filterHiddenRoutes(tmp.children);
-            if ((tmp.children instanceof Array) && (tmp.children.length > 0)) { // children全部合法
-                res.push(tmp);
-            }
-        } else { // 没有子项的，判断自身是否合法
-            if (!tmp.hidden) {
-                res.push(tmp)
-            }
-        }
-    })
+//         if (tmp.children) { // 有子项的，判断所有子项目，只要有一个不隐藏就可以了
+//             tmp.children = filterHiddenRoutes(tmp.children);
+//             if ((tmp.children instanceof Array) && (tmp.children.length > 0)) { // children全部合法
+//                 res.push(tmp);
+//             }
+//         } else { // 没有子项的，判断自身是否合法
+//             if (!tmp.hidden) {
+//                 res.push(tmp)
+//             }
+//         }
+//     })
 
-    return res
-}
+//     return res
+// }
 
 /**
  * @description: 访问首页时应该重定向到某个页面，这里固定重定向到第一个路由
@@ -251,7 +290,7 @@ function getRedirectRoot() {
         case 1:
             return '/menu_c'
             break;
-    
+
         default:
             return '/menu_c'
             break;
@@ -274,7 +313,7 @@ function getRedirectNotExistRoute() {
  * @return {type} 
  */
 
-function isExistRoute(path, routes=getPermissionRoutes(store.state.user.role)) {
+function isExistRoute(path, routes = getPermissionRoutes(store.state.user.role)) {
     for (let index in routes) {
         let route = routes[index];
         if (route.path === path) {
@@ -296,67 +335,108 @@ function isExistRoute(path, routes=getPermissionRoutes(store.state.user.role)) {
 
 
 export function getPermissionRoutes(role) {
-    
+
     let array = permissionRoutes[role];
     if (!(array instanceof Array && array.length > 0)) {
-        array = filterNoPermissionRoutes(allRoutes, role);
+        array = filterRoutes(allRoutes, role, false);
         if (array instanceof Array && array.length > 0) {
             permissionRoutes[role] = array;
         }
+        console.log(role, ': permissionRoutes :>> ', array);
     }
     
-    console.log(role, ': permissionRoutes :>> ', array);
     return array;
 }
 
-function filterNoPermissionRoutes(routes, role) {
+function filterRoutes(routes, role, nohidden) {
     const res = []
-
+    // console.log('filterRoutes :>> role: ', role, 'nohidden: ', nohidden, 'routes: ', routes);
     routes.forEach(route => {
         const tmp = {
             ...route
         }
 
         if (tmp.children) { // 有子项的，判断所有子项目，只要有一个合法就可以了
-            tmp.children = filterNoPermissionRoutes(tmp.children, role);
+            tmp.children = filterRoutes(tmp.children, role, nohidden);
             if ((tmp.children instanceof Array) && (tmp.children.length > 0)) { // children全部合法
                 res.push(tmp);
                 // 重定向子项目被过滤掉了怎么办，在这里要检查一遍，如果没了，用第一项作为重定向项
                 // console.log('tmp.redirect :>> ', tmp.redirect);
-                if (tmp.redirect) {
-                    let firstNotHiddenItem = null;
-                    let lastItem = null;
-                    for (const index in tmp.children) {
-                        let item = tmp.children[index];
-                        if (item.path === tmp.redirect) { // 1、指定重定向到path还在，不变
-                            break;
-                        } else if (!item.hidden && !firstNotHiddenItem) {
-                            firstNotHiddenItem = item;
-                        } else {
-                            lastItem = item;
-                        }
-                    }
+                // if (tmp.redirect) {
+                //     let firstNotHiddenItem = null;
+                //     let lastItem = null;
+                //     for (const index in tmp.children) {
+                //         let item = tmp.children[index];
+                //         if (item.path === tmp.redirect) { // 1、指定重定向到path还在，不变
+                //             break;
+                //         } else if (!item.hidden && !firstNotHiddenItem) {
+                //             firstNotHiddenItem = item;
+                //         } else {
+                //             lastItem = item;
+                //         }
+                //     }
 
-                    // console.log('firstNotHiddenItem :>> ', firstNotHiddenItem.path);
-                    // console.log('lastItem :>> ', lastItem.path);
+                //     // console.log('firstNotHiddenItem :>> ', firstNotHiddenItem.path);
+                //     // console.log('lastItem :>> ', lastItem.path);
 
-                    if (firstNotHiddenItem) { // 2、指定重定向到path不在，使用第一个非隐藏路由
-                        tmp.redirect = firstNotHiddenItem;
-                    } else if (lastItem) { // 3、指定重定向到path不在，全都隐藏的，则用最后一个作为重定向
-                        console.log('lastItem :>> ', lastItem.path);
-                        tmp.redirect = lastItem;
-                    }
-                }
+                //     if (firstNotHiddenItem) { // 2、指定重定向到path不在，使用第一个非隐藏路由
+                //         tmp.redirect = firstNotHiddenItem;
+                //     } else if (lastItem) { // 3、指定重定向到path不在，全都隐藏的，则用最后一个作为重定向
+                //         console.log('lastItem :>> ', lastItem.path);
+                //         tmp.redirect = lastItem;
+                //     }
+                // }
+
+                replaceRouteRedirect(tmp);
 
             }
         } else { // 没有子项的，判断自身是否合法
-            if (hasPermission(role, tmp)) {
-                res.push(tmp);
+            if (role && nohidden) {
+                if (!tmp.hidden && hasPermission(role, tmp)) {
+                    res.push(tmp);
+                }
+            } else if (role) {
+                if (hasPermission(role, tmp)) {
+                    res.push(tmp);
+                }
+            } else if (nohidden) {
+                if (!tmp.hidden) {
+                    res.push(tmp);
+                }
             }
         }
     })
 
     return res
+}
+
+function replaceRouteRedirect(route) {
+    if (!route.redirect) {
+        return;
+    }
+
+    let firstNotHiddenItem = null;
+    let lastItem = null;
+    for (const index in route.children) {
+        let item = route.children[index];
+        if (item.path === route.redirect) { // 1、指定重定向到path还在，不变
+            break;
+        } else if (!item.hidden && !firstNotHiddenItem) {
+            firstNotHiddenItem = item;
+        } else {
+            lastItem = item;
+        }
+    }
+
+    // console.log('firstNotHiddenItem :>> ', firstNotHiddenItem.path);
+    // console.log('lastItem :>> ', lastItem.path);
+
+    if (firstNotHiddenItem) { // 2、指定重定向到path不在，使用第一个非隐藏路由
+        route.redirect = firstNotHiddenItem;
+    } else if (lastItem) { // 3、指定重定向到path不在，全都隐藏的，则用最后一个作为重定向
+        console.log('lastItem :>> ', lastItem.path);
+        route.redirect = lastItem;
+    }
 }
 
 function hasPermission(role, route) {
@@ -367,4 +447,3 @@ function hasPermission(role, route) {
     }
 }
 export default router
-
