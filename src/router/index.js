@@ -3,11 +3,29 @@
  * @Date: 2020-08-28 16:10:30
  * @Description: file content
  */
+
+
+
+/**
+还有3个问题: 
+1、跳转路由时会报错
+2、路由配置里，子路由要写全路径
+3、svg-icon 图太小了
+ */ 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store'
 
 Vue.use(VueRouter)
+
+// 路由跳转时会报错，这里截获错误
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+
+    let err = originalPush.call(this, location).catch(err => err)
+    console.log('route error :>> ', err);
+    return err;
+}
 
 import Layout from '@/layout'
 
@@ -56,7 +74,7 @@ const allRoutes = [{
     {
         path: path404,
         name: path404,
-        redirect: '/menu_d_1',
+        redirect: '/404/menu_d_1',
         component: Layout,
         showFirst: true,
         // meta: {
@@ -65,7 +83,7 @@ const allRoutes = [{
         //     roles: [1],
         // },
         children: [{
-            path: '/menu_d_1',
+            path: '/404/menu_d_1',
             name: 'menu_d_1',
             component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
             meta: {
@@ -79,7 +97,7 @@ const allRoutes = [{
     {
         path: '/menu_c',
         component: Layout,
-        redirect: '/menu_c_1',
+        redirect: '/menu_c/menu_c_1',
         name: 'Example',
         meta: {
             title: 'Example',
@@ -87,7 +105,7 @@ const allRoutes = [{
             // roles: [1, 2]
         },
         children: [{
-                path: '/menu_c_1',
+                path: '/menu_c/menu_c_1',
                 name: 'menu_c_1',
                 component: () => import('@/views/templates/t_menu_c_1'),
                 meta: {
@@ -97,7 +115,7 @@ const allRoutes = [{
                 }
             },
             {
-                path: '/menu_c_2',
+                path: '/menu_c/menu_c_2',
                 name: 'menu_c_2',
                 component: () => import('@/views/templates/t_menu_c_2'),
                 meta: {
