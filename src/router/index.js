@@ -21,10 +21,15 @@ const allRoutes = [{
         path: '/',
         name: 'Home',
         hidden: true,
+    },
+    {
+        path: '/',
+        name: 'areaManager',
+        hidden: true,
         component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
         meta: {
-            title: 'Home',
-            icon: 'menu-account'
+            title: '区域管理',
+            icon: 'menu-area'
         },
     },
     {
@@ -34,29 +39,42 @@ const allRoutes = [{
 
         component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
         meta: {
-            title: 'About',
+            title: '关于',
             icon: 'menu-area'
         },
     },
     {
         path: pathLogin,
-        name: 'Login',
+        name: 'login',
         // hidden: true,
         component: () => import( /* webpackChunkName: "about" */ '@/views/login/index.vue'),
         meta: {
-            title: 'logo',
+            title: '登录',
             icon: 'menu-chart'
         },
     },
     {
         path: path404,
-        name: '404',
+        name: path404,
+        redirect: '/menu_d_1',
         component: Layout,
-        component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
-        meta: {
-            title: '页面没找到',
-            icon: 'menu-family'
-        },
+        showFirst: true,
+        // meta: {
+        //     title: path404,
+        //     icon: 'menu-waterfactory',
+        //     roles: [1],
+        // },
+        children: [{
+            path: '/menu_d_1',
+            name: 'menu_d_1',
+            component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
+            meta: {
+                title: '唯一子菜单',
+                icon: 'menu-waterfactory',
+                roles: [1],
+            }
+        }
+    ]
     },
     {
         path: '/menu_c',
@@ -65,8 +83,8 @@ const allRoutes = [{
         name: 'Example',
         meta: {
             title: 'Example',
-            icon: 'menu-waterfactory',
-            roles: [1, 2]
+            icon: 'menu-waterfactory'
+            // roles: [1, 2]
         },
         children: [{
                 path: '/menu_c_1',
@@ -307,6 +325,7 @@ function filterNoPermissionRoutes(routes, role) {
                     if (firstNotHiddenItem) { // 2、指定重定向到path不在，使用第一个非隐藏路由
                         tmp.redirect = firstNotHiddenItem;
                     } else if (lastItem) { // 3、指定重定向到path不在，全都隐藏的，则用最后一个作为重定向
+                        console.log('lastItem :>> ', lastItem.path);
                         tmp.redirect = lastItem;
                     }
                 }

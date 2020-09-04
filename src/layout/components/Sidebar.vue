@@ -10,21 +10,24 @@
                 <template v-for="(route, index) in routes">
                     <el-menu-item v-if="!route.children || route.children.length === 0" :key="route.path"
                         :index="route.path">
-                        <svg-icon :name="route.meta.icon"  class="mr15 f22"></svg-icon>
-                        {{route.meta.title}}
+                        <svg-icon :name="route.meta.icon"  class="mr15 f22" scale='2.5'></svg-icon>
+                        <span>{{route.meta.title}}</span>
+                    </el-menu-item>
+                    <el-menu-item v-else-if="route.children && route.children.length === 1 && route.showFirst" :key="route.children[0].path"
+                        :index="route.children[0].path">
+                        <svg-icon :name="route.children[0].meta.icon"  class="mr15 f22" scale='2.5'></svg-icon>
+                        <span>{{route.children[0].meta.title}}</span>
                     </el-menu-item>
                     <el-submenu v-else :index="index.toString()" :key="route.path">
                         <template slot="title">
-                            <svg-icon :name="route.meta.icon" class="mr15 f22"></svg-icon>
-                            {{route.meta.title}}
+                            <svg-icon :name="route.meta.icon" class="mr15 f22"></svg-icon>{{route.meta.title}}
                         </template>
 
                         <el-menu-item-group>
                             <template v-for="subroute in route.children">
                                 <el-menu-item v-if="!subroute.children || subroute.children.length === 0"
                                     :key="subroute.path" :index="subroute.path">
-                                    <svg-icon :name="subroute.meta.icon" class="mr15 f22"></svg-icon>
-                                    {{subroute.meta.title}}
+                                    <svg-icon :name="subroute.meta.icon" class="mr15 f22"></svg-icon>{{subroute.meta.title}}
                                 </el-menu-item>
                             </template>
                         </el-menu-item-group>

@@ -27,12 +27,10 @@
                 theme = 'default';
             }
 
-            if (theme === 'dark') {
-                console.log('重设一遍皮肤，以便触发皮肤切换');
-                this.$store.dispatch('settings/changeSetting', {
-                    'theme': theme
-                });
-            }
+            console.log('重设一遍皮肤，以便触发皮肤切换');
+            this.$store.dispatch('settings/changeSetting', {
+                'theme': theme
+            });
 
             console.log('重设一遍用户角色，以便触发各种根据权限动态显示到内容');
             this.$store.dispatch('user/setUserInfo', {
